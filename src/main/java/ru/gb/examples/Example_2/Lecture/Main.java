@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Class<?> car = Class.forName("Car");
+        Class<?> car = Class.forName("ru.gb.examples.Example_2.Lecture.Car");
         Constructor<?>[] constructors = car.getConstructors(); // массив потому что конструкторов может быть несколько
 
         Object gaz = constructors[0].newInstance("ГАЗ");
