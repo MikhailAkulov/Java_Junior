@@ -12,5 +12,4 @@ public @interface RandomInteger {
   int minValue() default -100;
 
   int maxValue() default 100;
-
 }

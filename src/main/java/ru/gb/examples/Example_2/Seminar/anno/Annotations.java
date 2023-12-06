@@ -29,5 +29,4 @@ public class Annotations {
       return positive;
     }
   }
-
 }
