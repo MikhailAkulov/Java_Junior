@@ -15,10 +15,18 @@ public class Main {
     public static void main(String[] args) {
         Employee emp1 = new Employee("Ivan", 25, 100.0, "IT");
 
-        DataService<Employee> dataService = new DataService<>();
-        dataService.saveData(emp1);
+        DataService<Employee> emp1SaveDataService = new DataService<>();
 
-//        Employee
+        /**
+         * Создаем и записываем файл
+         */
+//        emp1SaveDataService.saveData(emp1);
+
+        /**
+         * Читаем и удаляем файл
+         */
+        Employee emp1Load = emp1SaveDataService.loadData("ru.gb.examples.Example_3.Tasks.Employee_0fecdc99-9418-4012-86f3-b72cb29e8cf5");
+        System.out.println(emp1Load);
     }
 }
 
