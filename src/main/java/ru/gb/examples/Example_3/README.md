@@ -35,4 +35,4 @@
 
 [Директория](https://github.com/MikhailAkulov/Java_Junior/tree/main/src/main/java/ru/gb/examples/Example_3/Tasks)
 
-[Точка входа](https://github.com/MikhailAkulov/Java_Junior/blob/main/src/main/java/ru/gb/examples/Example_2/Tasks/Homework.java)
+[Точка входа](https://github.com/MikhailAkulov/Java_Junior/blob/main/src/main/java/ru/gb/examples/Example_3/Tasks/Main.java)
