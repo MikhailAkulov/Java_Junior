@@ -1,31 +1,33 @@
 package ru.gb.examples.Example_3.Tasks;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.UUID;
 
 public class DataService<T extends Serializable> {
-
-    public void saveData(T data) {
-        String fileName = data.getClass().getName() + "_" + UUID.randomUUID();
-        Path path = Path.of("src/main/java/ru/gb/examples/Example_3/Tasks", fileName);
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(Files.newOutputStream(path))) {
+    public void saveData(T data, String fileName) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(data);
+            objectOutputStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
 
-    public T loadData(String fileName) {
+    public T loadData(String fileName) throws RuntimeException {
+        File file = new File(fileName);
+        if (!file.exists() || file.isDirectory()) {
+            throw new RuntimeException("File not found");
+        } else if (file.length() == 0) {
+            throw new RuntimeException("File is empty");
+        }
         T data;
-        Path path = Path.of("src/main/java/ru/gb/examples/Example_3/Tasks/" + fileName);
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(Files.newInputStream(path))) {
-            data = (T) objectInputStream.readObject();
-            File file = new File("src/main/java/ru/gb/examples/Example_3/Tasks/" + fileName);
-            boolean deleteStat = file.delete();
-            if (deleteStat) {
-                System.out.println("File: " + fileName + " - deleted successfully");
+        try (FileInputStream fileInputStream = new FileInputStream(fileName)) {
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Object inputObject = objectInputStream.readObject();
+            data = (T) inputObject;
+            objectInputStream.close();
+            if (file.delete()) {
+                System.out.println("File: " + file.getAbsolutePath() + " - has been deleted");
             }
             return data;
         } catch (IOException | ClassNotFoundException e) {
