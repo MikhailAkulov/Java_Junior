@@ -65,7 +65,7 @@ public class Jdbc {
   private static void insertData(Connection connection) throws SQLException {
     try (Statement statement = connection.createStatement()) {
       int updatedRows = statement.executeUpdate("""
-        insert into users(id, name) 
+        insert into users(id, name)
         values(1, 'Igor'),
               (2, 'User #2'),
               (3, 'User #3'),
