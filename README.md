@@ -5,3 +5,5 @@
 [Reflection API](https://github.com/MikhailAkulov/Java_Junior/tree/main/src/main/java/ru/gb/examples/Example_2)
 
 [Сериализация](https://github.com/MikhailAkulov/Java_Junior/tree/main/src/main/java/ru/gb/examples/Example_3)
+
+[Базы данных и инструменты взаимодействия с ними](https://github.com/MikhailAkulov/Java_Junior/tree/main/src/main/java/ru/gb/examples/Example_4)

@@ -21,10 +21,7 @@ alter table magic auto_increment=1]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="312a1d6c-83c0-4c56-b4cf-3e23ea488909" object-ref="consoles/@localhost" />
-      <object connection-id="312a1d6c-83c0-4c56-b4cf-3e23ea488909" object-ref="schemas/test/tables/magic" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="312a1d6c-83c0-4c56-b4cf-3e23ea488909" />
