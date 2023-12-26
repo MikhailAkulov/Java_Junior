@@ -61,7 +61,7 @@ public class Db {
 //        session.getTransaction().commit();
 //        session.close();
 
-        try (Session session = connector.getSession()) {
+//        try (Session session = connector.getSession()) {
 
 //            List<Magic> books = session.createQuery("FROM Magic", Magic.class).getResultList();
 //            books.forEach(System.out::println);
@@ -77,14 +77,14 @@ public class Db {
 //            session.update(magic);
 //            session.getTransaction().commit();
 
-            Transaction t = session.beginTransaction();
-            List<Magic> magics = session.createQuery("FROM Magic", Magic.class).getResultList();
-            magics.forEach(m -> {
-                session.delete(m);
-            });
-            t.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//            Transaction t = session.beginTransaction();
+//            List<Magic> magics = session.createQuery("FROM Magic", Magic.class).getResultList();
+//            magics.forEach(m -> {
+//                session.delete(m);
+//            });
+//            t.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }
