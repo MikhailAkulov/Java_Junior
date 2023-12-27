@@ -35,6 +35,7 @@
     1.2 Добавить в таблицу 10 книг
 
     1.3 Сделать запрос select from book where author = 'какое-то имя' и прочитать его с помощью ResultSet
+
     
 2. С помощью JPA(Hibernate) выполнить:
 
@@ -44,8 +45,19 @@
 
     2.3 Выгрузить список книг какого-то автора
 
+
 3. (со *) Создать сущность Автор (id bigint, name varchar), и в сущности Book сделать поле типа Author (OneToOne)
 
     3.1 * Выгрузить Список книг и убедиться, что поле author заполнено
 
     3.2 ** В классе Author создать поле List<Book>, которое описывает список всех книг этого автора. (OneToMany)
+
+`Реализация:`
+
+[Task1_jdbc](https://github.com/MikhailAkulov/Java_Junior/blob/main/src/main/java/ru/gb/examples/Example_4/Tasks/Task1_jdbc.java)
+
+[Task2_jpa_hibernate](https://github.com/MikhailAkulov/Java_Junior/blob/main/src/main/java/ru/gb/examples/Example_4/Tasks/Task2_jpa_hibernate.java)
+
+[Book](https://github.com/MikhailAkulov/Java_Junior/blob/main/src/main/java/ru/gb/examples/Example_4/Tasks/Book.java)
+
+[Author](https://github.com/MikhailAkulov/Java_Junior/blob/main/src/main/java/ru/gb/examples/Example_4/Tasks/Author.java)

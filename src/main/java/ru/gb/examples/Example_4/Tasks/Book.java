@@ -6,18 +6,19 @@ import jakarta.persistence.*;
 @Table(name = "books")
 public class Book {
 
-//    public Book() {
-//    }
+    public Book() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "book_title")
+    @Column(name = "name")
     private String name;
 
+    //3.* Создать сущность Автор (id bigint, name varchar), и в сущности Book сделать поле типа Author (OneToOne)
     @OneToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author")
     private Author author;
 
     @Column(name = "yearOfPub")
@@ -57,11 +58,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", author=" + author +
-                ", yearOfPub='" + yearOfPub + '\'' +
-                '}';
+        return String.format("[Book_id: %s, title: %s, author_name: %s, year: %s]", id, name, author,yearOfPub);
     }
 }

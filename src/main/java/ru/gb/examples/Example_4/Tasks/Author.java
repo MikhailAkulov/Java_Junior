@@ -6,12 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "authors")
 public class Author {
 
-//    public Author() {
-//    }
-//
-//    public Author(long id) {
-//        this.id = id;
-//    }
+    public Author() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,8 +34,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
-                "name='" + name + '\'' +
-                '}';
+        return String.format("%s", name);
     }
 }
