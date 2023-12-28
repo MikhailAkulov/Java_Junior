@@ -33,7 +33,7 @@ public class Server {
 
         new Thread(() -> {
           try (Scanner input = wrapper.getInput(); PrintWriter output = wrapper.getOutput()) {
-            output.println("Подключение успешно. Список всех клиентов: " + clients + "\n" +
+            output.println("Подключение выполнено. Список пользователей в чате: " + clients + "\n" +
                     "Для отправки сообщения введите: @id пользователя текст сообщения\n" +
                     "Для выхода отправьте: q");
             boolean isAdmin = false;
@@ -43,14 +43,17 @@ public class Server {
 
               if (Objects.equals("admin", clientInput)) {
                 isAdmin = true;
-                System.out.println("Пользователь: " + wrapper + " - админ");
+                System.out.println("Клиент: " + wrapper + " - админ");
                 continue;
               }
 
               if (clientInput.length() >= 5 && Objects.equals("kick", clientInput.substring(0, 4)) && isAdmin) {
                 Long ejectedUser = Long.parseLong(clientInput.substring(clientInput.indexOf(" ") + 1));
-                clients.values().forEach(it -> it.getOutput().println("Клиент: " + ejectedUser + " принудительно покинул чат усилиями админа"));
-                System.out.println("Пользователь: " + ejectedUser + " предан анафеме и изгнан ссаными тряпками");
+                if (ejectedUser == clientId) {
+                  continue;
+                }
+                clients.values().forEach(it -> it.getOutput().println("Пользователь: " + ejectedUser + " кикнут админом"));
+                System.out.println("Клиент: " + ejectedUser + " предан анафеме и изгнан ссаными тряпками");
                 clients.get(ejectedUser).close();
                 clients.remove(ejectedUser);
                 continue;
@@ -58,8 +61,8 @@ public class Server {
 
               if (Objects.equals("q", clientInput)) {
                 clients.remove(clientId);
-                clients.values().forEach(it -> it.getOutput().println("Клиент: [" + clientId + "] отключился"));
-                System.out.println("Пользователь: " + wrapper + " вышел из чата");
+                clients.values().forEach(it -> it.getOutput().println("Пользователь: " + clientId + " отключился"));
+                System.out.println("Клиент: " + wrapper + " вышел из чата");
                 break;
               }
 
@@ -67,12 +70,15 @@ public class Server {
               if (Objects.equals("@", clientInput.substring(0, 1))) {
                 long destinationId = Long.parseLong(clientInput.substring(1, clientInput.indexOf(" ")));
                 SocketWrapper destination = clients.get(destinationId);
-                destination.getOutput().println("To " + clientId + ": " +
+                if (destinationId == clientId) {
+                  continue;
+                }
+                destination.getOutput().println("msg from " + clientId + " >>> " +
                         clientInput.substring(clientInput.indexOf(" ") + 1));
               } else {
                 clients.values().stream()
                         .filter(it -> it.getId() != clientId)
-                        .forEach(it -> it.getOutput().println("To " + clientId + ": " + clientInput));
+                        .forEach(it -> it.getOutput().println("msg from " + clientId + " >>> " + clientInput));
               }
             }
           } catch (Exception e) {

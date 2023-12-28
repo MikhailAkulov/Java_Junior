@@ -20,7 +20,7 @@ public class Client {
         }
       } catch (Exception e) {
 //        throw new RuntimeException(e);
-        System.out.println("Отключился");
+        System.out.println("Вы покинули чат");
       }
     }).start();
 
