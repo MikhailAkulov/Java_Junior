@@ -32,3 +32,5 @@
 
     3.2 Теперь, если админ посылает сообщение kick 4 - то отключаем клиента с идентификатором 4. 
 4. (**) Подумать, как лучше структурировать программу (раскидать код по классам).
+
+[Реализация](https://github.com/MikhailAkulov/Java_Junior/tree/main/src/main/java/ru/gb/examples/Example_5/Tasks)
