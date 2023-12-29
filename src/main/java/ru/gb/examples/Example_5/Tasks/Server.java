@@ -1,7 +1,5 @@
 package ru.gb.examples.Example_5.Tasks;
 
-import lombok.Getter;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -70,7 +68,7 @@ public class Server {
               if (Objects.equals("@", clientInput.substring(0, 1))) {
                 long destinationId = Long.parseLong(clientInput.substring(1, clientInput.indexOf(" ")));
                 SocketWrapper destination = clients.get(destinationId);
-                if (destinationId == clientId) {
+                if (destinationId != clientId) {
                   continue;
                 }
                 destination.getOutput().println("msg from " + clientId + " >>> " +
@@ -87,31 +85,5 @@ public class Server {
         }).start();
       }
     }
-  }
-}
-
-@Getter
-class SocketWrapper implements AutoCloseable {
-
-  private final long id;
-  private final Socket socket;
-  private final Scanner input;
-  private final PrintWriter output;
-
-  SocketWrapper(long id, Socket socket) throws IOException {
-    this.id = id;
-    this.socket = socket;
-    this.input = new Scanner(socket.getInputStream());
-    this.output = new PrintWriter(socket.getOutputStream(), true);
-  }
-
-  @Override
-  public void close() throws Exception {
-    socket.close();
-  }
-
-  @Override
-  public String toString() {
-    return String.format("[id: %s, ip: %s, port: %s]", id, socket.getInetAddress(), socket.getPort());
   }
 }
